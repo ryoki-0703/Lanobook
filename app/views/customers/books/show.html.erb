@@ -1,0 +1,10 @@
+<div class="book-body">
+  <%= attachment_image_tag @book, :image, size: "300x300" %>
+  <p>ショップ名：<%= @book.name %></p>
+  <p>説明：<%= @book.introduction %></p>
+  <p>ユーザーネーム：<%= @book.customer.name %></p>
+  <p>投稿日時：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @book.customer == current_customer %>
+    <%= link_to "削除", customers_book_path(@book), method: :delete %>
+  <% end %>
+</div>

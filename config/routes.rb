@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :edit, :update]
     patch 'customers/out' => 'customers#out', as: :customers_out
     get 'customers/out_show' => 'customers#out_show'
-    resources :books
+    resources :books, only: [:new, :create, :index, :show, :destroy, :edit, :update]
   end
 
   root to: 'homes#top'
