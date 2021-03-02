@@ -7,4 +7,19 @@
   <% if @book.customer == current_customer %>
     <%= link_to "削除", customers_book_path(@book), method: :delete %>
   <% end %>
+
+  <% if @book.favorited_by?(current_customer) %>
+    <p>
+      <%= link_to customers_book_favorites_path(@book), method: :delete do %>
+        ♥<%= @book.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to customers_book_favorites_path(@book), method: :post do %>
+        ♡<%= @book.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+  <%= link_to "編集", edit_customers_book_path %>
 </div>
