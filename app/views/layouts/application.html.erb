@@ -10,13 +10,23 @@
   </head>
 
   <body>
-    <% if customer_signed_in? %>
-      <li><%= link_to '投稿', new_customers_book_path %></li>
-      <li><%= link_to "投稿一覧", customers_books_path %></li>
-      <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete  %></li>
-    <% else %>
-      <li><%= link_to "ログイン", new_customer_session_path %></li>
-      <li><%= link_to "新規登録", new_admin_registration_path %></li>
-    <% end %>  <%= yield %>
+
+    <header class="container">
+      <ul class="row">
+        <!--<h4><= link_to "ロゴ", root_path ></h4>-->
+          <% if customer_signed_in? %>
+            <li><%= link_to "マイページ", customers_customer_path(current_customer.id) %></li>
+            <li><%= link_to '投稿', new_customers_book_path %></li>
+            <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete  %></li>
+          <% else %>
+            <li><%= link_to "ログイン", new_customer_session_path %></li>
+            <li><%= link_to "新規登録", new_customer_registration_path %></li>
+          <% end %>
+      </ul>
+      <ul class="row">
+        <li><%=link_to "TOP", root_path %></li>
+        <li><%= link_to "投稿一覧", customers_books_path %></li>
+      </ul>
+    </header>  <%= yield %>
   </body>
 </html>

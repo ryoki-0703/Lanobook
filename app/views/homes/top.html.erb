@@ -1,1 +1,12 @@
 <h1>TOPページ</h1>
+
+<% @books.each do |book| %>
+  <div style="float:left;">
+    <%= link_to customers_book_path(book.id) do %>
+      <%= attachment_image_tag book, :image, size: "100x100" %>
+    <% end %>
+    <p>タイトル：<%= book.name %></p>
+    <p>ユーザー画像</p>
+    <p>ユーザーネーム：<%= book.customer.name %></p>
+  </div>
+<% end %>
